@@ -3,23 +3,25 @@ version: '3.8'
 services:
   database:
     image: postgres:latest
+    expose:
+      - 5433
     ports:
-      - 5432:5432
+      - 5433:5433
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=database
       - POSTGRES_PASSWORD=docker
     volumes:
       - ./database/migration.sql:/docker-entrypoint-initdb.d/migration.sql
+    command: -p 5433
 
-  # next:
-  #   build: ./
-  #   restart: always
-  #   ports:
-  #     - 3000:3000
-  #   environment:
-  #     - BASE_URL=http://localhost:3000/interview
-  #     - CONNECTION_STRING=postgresql://postgres:docker@database:5432/database
-  #     # - CONNECTION_STRING=postgresql://postgres:docker@localhost:5432/database
-  #   depends_on:
-  #     - database
+  next:
+    build: ./
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      - BASE_URL=http://localhost:3000/interview
+      - CONNECTION_STRING=postgresql://postgres:docker@database:5433/database
+    depends_on:
+      - database
