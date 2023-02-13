@@ -14,7 +14,7 @@ Galvanize is a company that conducts coding immersive courses and must determine
 
 ## Deployed to AWS EC2 Instance:
 
-![Admissions Hub](http://35.90.14.203:3000/) - Public link to the application
+[Admissions Hub](http://35.90.14.203:3000/) - Public link to the application
 
 ## Getting Started
 
